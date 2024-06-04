@@ -1,27 +1,12 @@
-import { useEffect, useState } from 'react';
-import { getEmpleadosRequest } from '../api/empleados.api';
+import { useEffect } from 'react';
+import { useEmpleados } from '../context/empleadosContext';
 import EmpleadosCard from '../components/empleadosCard';
+import { Link } from 'react-router-dom';
 
 function EmpleadosPage() {
-  const [empleados, setEmpleados] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { empleados, loadEmpleados, loading, error } = useEmpleados();
 
   useEffect(() => {
-    async function loadEmpleados() {
-      try {
-        const response = await getEmpleadosRequest();
-        if (response && response.data) {
-          setEmpleados(response.data);
-        } else {
-          setError('No se pudieron cargar los datos de los empleados');
-        }
-        setLoading(false);
-      } catch (error) {
-        setError('Error al cargar los empleados');
-        setLoading(false);
-      }
-    }
     loadEmpleados();
   }, []);
 
@@ -31,6 +16,7 @@ function EmpleadosPage() {
   return (
     <div>
       <h1>Empleados</h1>
+      <Link to="/empleados/new"><button>Crear Empleado</button></Link>
       {empleados.map((empleado) => (
         <EmpleadosCard empleado={empleado} key={empleado.idempleados} />
       ))}

@@ -1,22 +1,25 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 function Navbar() {
-    return (
-        <div>
-        <h1>Gestion audiovisuales</h1>
-
-        <ul>
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/new">Crear Empleado</Link>
-            </li>
-        </ul>
-        
-
-        </div>
-    )
+  return (
+    <div>
+      <h1>Gestión Audiovisuales</h1>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/empleados">Empleados</Link>
+        </li>
+        <li>
+          <Link to="/marcas">Marcas</Link>
+        </li>
+        <li>
+          <Link to="/equipos">Equipos</Link>
+        </li>
+      </ul>
+    </div>
+  );
 }
 
-export default Navbar
+export default Navbar;
