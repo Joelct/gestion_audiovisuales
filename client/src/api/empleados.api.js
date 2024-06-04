@@ -13,3 +13,6 @@ export const getEmpleadosRequest = async () => {
 export const crearEmpleadoRequest = async (empleados) => {
     await axios.post("http://localhost:3000/api/empleados", empleados);
 }
+
+export const deleteEmpleadoRequest = async (idempleados) =>
+    await axios.delete(`http://localhost:3000/api/empleados/${idempleados}`);
