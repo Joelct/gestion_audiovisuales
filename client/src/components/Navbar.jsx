@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+// src/components/Navbar.jsx
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <div>
-      <h1>Gestión Audiovisuales</h1>
+    <nav>
       <ul>
+        <h1>Gestion Audiovisuales</h1>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -17,8 +18,20 @@ function Navbar() {
         <li>
           <Link to="/equipos">Equipos</Link>
         </li>
+        <li>
+          <Link to="/modelos">Modelos</Link>
+        </li>
+        <li>
+          <Link to="/tec_conexiones">Conexiones Técnicas</Link>
+        </li>
+        <li>
+          <Link to="/usuarios">Usuarios</Link>
+        </li>
+        <li>
+          <Link to="/tipos_equipos">Tipos de Equipos</Link>
+        </li>
       </ul>
-    </div>
+    </nav>
   );
 }
 

@@ -26,6 +26,7 @@ function EmpleadosForm() {
   };
 
   const validationSchema = Yup.object({
+    idempleados: Yup.number().required('El ID del empleado es obligatorio'),
     nombre_empleados: Yup.string().required('El nombre del empleado es obligatorio'),
     cedula_empleados: Yup.number().required('La cédula del empleado es obligatoria'),
     tanda_labor: Yup.string().required('La tanda laboral es obligatoria'),
@@ -71,6 +72,11 @@ function EmpleadosForm() {
         {({ isSubmitting }) => (
           <Form>
             <div>
+              <label htmlFor="idempleados">ID</label>
+              <Field type="number" name="idempleados" />
+              <ErrorMessage name="idempleados" component="div" />
+            </div>
+            <div>
               <label htmlFor="nombre_empleados">Nombre</label>
               <Field type="text" name="nombre_empleados" />
               <ErrorMessage name="nombre_empleados" component="div" />
@@ -100,7 +106,7 @@ function EmpleadosForm() {
               <ErrorMessage name="estado_empleado" component="div" />
             </div>
             <button type="submit" disabled={isSubmitting}>
-              Guardar Empleado
+              {isSubmitting ? 'Enviando...' : 'Guardar'}
             </button>
           </Form>
         )}
