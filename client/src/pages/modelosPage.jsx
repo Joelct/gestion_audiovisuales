@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useModelos } from '../context/modelosContext';
 import ModelosCard from '../components/modelosCard';
 import { Link } from 'react-router-dom';
+import './page.css'
 
 function ModelosPage() {
   const { modelos, loadModelos, loading, error } = useModelos();
@@ -15,7 +16,7 @@ function ModelosPage() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className="page">
       <h1>Modelos</h1>
       <Link to="/modelos/new"><button>Crear Modelo</button></Link>
       {modelos.map((modelo) => (

@@ -1,49 +1,29 @@
-// marcas.api.js
+// src/api/marcas.api.js
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000/api'; // Reemplaza con la URL de tu backend
+const API_URL = 'http://localhost:3000/api';
 
-export const obtenerMarcas = async () => {
-    try {
-        const response = await axios.get(`${BASE_URL}/marcas`);
-        return response.data;
-    } catch (error) {
-        throw new Error('Error al obtener las marcas');
-    }
+export const getMarcasRequest = async () => {
+  return await axios.get(`${API_URL}/marcas`);
 };
 
-export const obtenerMarcaPorId = async (idMarca) => {
-    try {
-        const response = await axios.get(`${BASE_URL}/marcas/${idMarca}`);
-        return response.data;
-    } catch (error) {
-        throw new Error('Error al obtener la marca');
-    }
+export const getMarcaRequest = async (id) => {
+  return await axios.get(`${API_URL}/marcas/${id}`);
 };
 
-export const crearMarca = async (nuevaMarca) => {
-    try {
-        const response = await axios.post(`${BASE_URL}/marcas`, nuevaMarca);
-        return response.data;
-    } catch (error) {
-        throw new Error('Error al crear la marca');
-    }
+export const createMarcaRequest = async (marca) => {
+  return await axios.post(`${API_URL}/marcas`, marca);
 };
 
-export const actualizarMarca = async (idMarca, marcaActualizada) => {
-    try {
-        const response = await axios.put(`${BASE_URL}/marcas/${idMarca}`, marcaActualizada);
-        return response.data;
-    } catch (error) {
-        throw new Error('Error al actualizar la marca');
-    }
+export const updateMarcaRequest = async (id, updatedMarca) => {
+  return await axios.put(`${API_URL}/marcas/${id}`, updatedMarca);
 };
 
-export const eliminarMarca = async (idMarca) => {
-    try {
-        const response = await axios.delete(`${BASE_URL}/marcas/${idMarca}`);
-        return response.data;
-    } catch (error) {
-        throw new Error('Error al eliminar la marca');
-    }
+export const deleteMarcaRequest = async (id) => {
+  try {
+    await axios.delete(`${API_URL}/marcas/${id}`);
+  } catch (error) {
+    console.error('Error al eliminar la marca:', error);
+    throw error;
+  }
 };

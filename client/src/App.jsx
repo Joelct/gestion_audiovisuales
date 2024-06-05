@@ -23,6 +23,7 @@ import { ModelosProvider } from './context/modelosContext';
 import { TecConexionProvider } from './context/tec_conexionContext';
 import { UsuariosProvider } from './context/usuariosContext';
 import { TiposEquiposProvider } from './context/tipos_equiposContext';
+import './App.css';
 
 function App() {
   return (

@@ -65,15 +65,14 @@ export const updateMarca = async (req, res) => {
 
 // Eliminar una marca
 export const deleteMarca = async (req, res) => {
-    const { id } = req.params;
     try {
-        const [result] = await pool.query('DELETE FROM marcas WHERE idmarcas = ?', [id]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Marca no encontrada' });
-        }
-        res.json({ message: 'Marca eliminada correctamente' });
+      const [result] = await pool.query('DELETE FROM marcas WHERE idmarcas = ?', [req.params.id]);
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Marca no encontrada' });
+      }
+      return res.sendStatus(204);
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al eliminar la marca' });
+      console.error(error);  // Agregar log para identificar el error
+      return res.status(500).json({ message: 'Error al eliminar la marca' });
     }
-};
+  };

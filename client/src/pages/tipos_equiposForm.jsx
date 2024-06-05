@@ -1,9 +1,9 @@
-// src/pages/tipos_equiposForm.jsx
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useTiposEquipos } from '../context/tipos_equiposContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import './form.css';
 
 function TiposEquiposForm() {
   const { createTipoEquipo, getTipoEquipo, updateTipoEquipo } = useTiposEquipos();
@@ -50,7 +50,7 @@ function TiposEquiposForm() {
         enableReinitialize
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className="form-container">
             <div>
               <label htmlFor="id_tipos_equipos">ID</label>
               <Field type="number" name="id_tipos_equipos" />

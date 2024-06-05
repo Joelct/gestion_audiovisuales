@@ -67,13 +67,13 @@ export const updateEmpleado = async (req, res) => {
 export const deleteEmpleado = async (req, res) => {
     const { id } = req.params;
     try {
-        const [result] = await pool.query('DELETE FROM empleados WHERE idempleados = ?', [id]);
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: 'Empleado no encontrado' });
-        }
-        res.json({ message: 'Empleado eliminado correctamente' });
+      const [result] = await pool.query('DELETE FROM empleados WHERE idempleados = ?', [id]);
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ message: 'Empleado no encontrado' });
+      }
+      res.json({ message: 'Empleado eliminado correctamente' });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Error al eliminar el empleado' });
+      console.error(error);
+      res.status(500).json({ message: 'Error al eliminar el empleado' });
     }
-};
+  };

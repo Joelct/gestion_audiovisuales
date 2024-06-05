@@ -1,6 +1,7 @@
 import { deleteEmpleadoRequest } from "../api/empleados.api";
 import { useEmpleados } from "../context/empleadosContext";
 import { useNavigate } from "react-router-dom";
+import './card.css';
 
 function EmpleadosCard({ empleado }) {
   const { deleteEmpleado } = useEmpleados();
@@ -11,12 +12,13 @@ function EmpleadosCard({ empleado }) {
       await deleteEmpleadoRequest(idempleados);
       deleteEmpleado(idempleados);
     } catch (error) {
-      console.error(error);
+      console.error('Error al eliminar el empleado:', error);
+      alert('Error al eliminar el empleado. Por favor, inténtelo de nuevo.');
     }
   };
 
   return (
-    <div>
+    <div className="card">
       <p>Id: {empleado.idempleados}</p>
       <p>{empleado.nombre_empleados}</p>
       <p>{empleado.cedula_empleados}</p>

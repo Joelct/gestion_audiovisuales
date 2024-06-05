@@ -1,8 +1,8 @@
-// src/pages/usuariosPage.jsx
 import { useEffect } from 'react';
 import { useUsuarios } from '../context/usuariosContext';
 import UsuariosCard from '../components/usuariosCard';
 import { Link } from 'react-router-dom';
+import './page.css'
 
 function UsuariosPage() {
   const { usuarios, loadUsuarios, loading, error } = useUsuarios();
@@ -15,7 +15,7 @@ function UsuariosPage() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className="page">
       <h1>Usuarios</h1>
       <Link to="/usuarios/new"><button>Crear Usuario</button></Link>
       {usuarios.map((usuario) => (

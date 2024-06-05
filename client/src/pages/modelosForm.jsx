@@ -1,9 +1,9 @@
-// src/pages/modelosForm.jsx
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useModelos } from '../context/modelosContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import './form.css';
 
 function ModelosForm() {
   const { createModelo, getModelo, updateModelo } = useModelos();
@@ -53,7 +53,7 @@ function ModelosForm() {
         enableReinitialize
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className="form-container">
             <div>
               <label htmlFor="idmodelos">ID</label>
               <Field type="number" name="idmodelos" />

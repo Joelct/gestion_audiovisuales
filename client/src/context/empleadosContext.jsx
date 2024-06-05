@@ -60,9 +60,19 @@ export const EmpleadosContextProvider = ({ children }) => {
     }
   };
 
+  const getEmpleado = async (id) => {
+    try {
+      const response = await getEmpleadoRequest(id);
+      return response.data;
+    } catch (error) {
+      console.error('Error al obtener el empleado:', error);
+      throw error;
+    }
+  };
+
   return (
     <EmpleadosContext.Provider
-      value={{ empleados, loadEmpleados, createEmpleado, updateEmpleado, deleteEmpleado, loading, error }}
+      value={{ empleados, loadEmpleados, createEmpleado, updateEmpleado, deleteEmpleado, getEmpleado, loading, error }}
     >
       {children}
     </EmpleadosContext.Provider>

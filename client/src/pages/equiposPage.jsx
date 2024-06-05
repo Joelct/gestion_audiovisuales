@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useEquipos } from '../context/equiposContext';
 import EquiposCard from '../components/equiposCard';
 import { Link } from 'react-router-dom';
+import './page.css'
 
 function EquiposPage() {
   const { equipos, loadEquipos, loading, error } = useEquipos();
@@ -14,7 +15,7 @@ function EquiposPage() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className="page">
       <h1>Equipos</h1>
       <Link to="/equipos/new"><button>Crear Equipo</button></Link>
       {equipos.map((equipo) => (

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEmpleados } from '../context/empleadosContext';
-import { crearEmpleadoRequest, editarEmpleadoRequest, getEmpleadoRequest } from '../api/empleados.api';
+import './form.css';
 
 function EmpleadosForm() {
-  const { createEmpleado, updateEmpleado } = useEmpleados();
+  const { createEmpleado, updateEmpleado, getEmpleado } = useEmpleados();
   const params = useParams();
+  const navigate = useNavigate();
   const [empleadoData, setEmpleadoData] = useState(null);
 
   useEffect(() => {
@@ -26,12 +27,12 @@ function EmpleadosForm() {
   };
 
   const validationSchema = Yup.object({
-    idempleados: Yup.number().required('El ID del empleado es obligatorio'),
-    nombre_empleados: Yup.string().required('El nombre del empleado es obligatorio'),
-    cedula_empleados: Yup.number().required('La cédula del empleado es obligatoria'),
-    tanda_labor: Yup.string().required('La tanda laboral es obligatoria'),
-    fecha_ingreso: Yup.date().required('La fecha de ingreso es obligatoria'),
-    estado_empleado: Yup.string().required('El estado del empleado es obligatorio')
+    idempleados: Yup.number(),
+    nombre_empleados: Yup.string().required('El nombre es requerido'),
+    cedula_empleados: Yup.string().required('La cédula es requerida'),
+    tanda_labor: Yup.string().required('La tanda laboral es requerida'),
+    fecha_ingreso: Yup.date().required('La fecha de ingreso es requerida'),
+    estado_empleado: Yup.string().required('El estado del empleado es requerido')
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -43,8 +44,9 @@ function EmpleadosForm() {
       }
       resetForm();
       alert('Empleado guardado exitosamente');
+      navigate('/empleados'); // Redireccionar a la página de empleados
     } catch (error) {
-      console.error(error);
+      console.error('Error al guardar el empleado:', error);
       alert('Error al guardar el empleado');
     } finally {
       setSubmitting(false);
@@ -53,10 +55,10 @@ function EmpleadosForm() {
 
   const loadEmpleado = async (id) => {
     try {
-      const response = await getEmpleadoRequest(id);
-      setEmpleadoData(response.data);
+      const empleado = await getEmpleado(id);
+      setEmpleadoData(empleado);
     } catch (error) {
-      console.error(error);
+      console.error('Error al cargar el empleado:', error);
     }
   };
 
@@ -66,47 +68,43 @@ function EmpleadosForm() {
       <Formik
         initialValues={empleadoData || initialValues}
         validationSchema={validationSchema}
-        enableReinitialize
         onSubmit={handleSubmit}
+        enableReinitialize={true}
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className="form-container">
             <div>
-              <label htmlFor="idempleados">ID</label>
-              <Field type="number" name="idempleados" />
+              <label htmlFor="idempleados">ID del Empleado</label>
+              <Field type="number" name="idempleados" disabled={!!params.id} />
               <ErrorMessage name="idempleados" component="div" />
             </div>
             <div>
-              <label htmlFor="nombre_empleados">Nombre</label>
+              <label htmlFor="nombre_empleados">Nombre del Empleado</label>
               <Field type="text" name="nombre_empleados" />
               <ErrorMessage name="nombre_empleados" component="div" />
             </div>
             <div>
-              <label htmlFor="cedula_empleados">Cédula</label>
-              <Field type="number" name="cedula_empleados" />
+              <label htmlFor="cedula_empleados">Cédula del Empleado</label>
+              <Field type="text" name="cedula_empleados" />
               <ErrorMessage name="cedula_empleados" component="div" />
             </div>
             <div>
-              <label htmlFor="tanda_labor">Tanda laboral</label>
+              <label htmlFor="tanda_labor">Tanda Laboral</label>
               <Field type="text" name="tanda_labor" />
               <ErrorMessage name="tanda_labor" component="div" />
             </div>
             <div>
-              <label htmlFor="fecha_ingreso">Fecha de ingreso</label>
+              <label htmlFor="fecha_ingreso">Fecha de Ingreso</label>
               <Field type="date" name="fecha_ingreso" />
               <ErrorMessage name="fecha_ingreso" component="div" />
             </div>
             <div>
-              <label htmlFor="estado_empleado">Estado</label>
-              <Field as="select" name="estado_empleado">
-                <option value="">Seleccione un estado</option>
-                <option value="Activo">Activo</option>
-                <option value="Inactivo">Inactivo</option>
-              </Field>
+              <label htmlFor="estado_empleado">Estado del Empleado</label>
+              <Field type="text" name="estado_empleado" />
               <ErrorMessage name="estado_empleado" component="div" />
             </div>
             <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Enviando...' : 'Guardar'}
+              Guardar empleado
             </button>
           </Form>
         )}

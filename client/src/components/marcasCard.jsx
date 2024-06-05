@@ -1,32 +1,29 @@
-// MarcasCard.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { eliminarMarca } from '../api/marcas.api';
+// src/components/marcasCard.jsx
+import { deleteMarcaRequest } from '../api/marcas.api';
 import { useMarcas } from '../context/marcasContext';
+import { useNavigate } from 'react-router-dom';
+import './card.css';
 
 function MarcasCard({ marca }) {
-    const { deleteMarca } = useMarcas();
+  const { deleteMarca } = useMarcas();
+  const navigate = useNavigate();
 
-    const handleDelete = async () => {
-        try {
-            await eliminarMarca(marca.idmarcas);
-            deleteMarca(marca.idmarcas);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+  const handleDelete = async (id) => {
+    try {
+      await deleteMarca(id);
+    } catch (error) {
+      console.error('Error al eliminar la marca:', error);
+    }
+  };
 
-    return (
-        <div className="marca-card">
-            <h3>{marca.descripcion_marcas}</h3>
-            <p>ID: {marca.idmarcas}</p>
-            <p>Estado: {marca.estado_marcas}</p>
-            <div className="buttons">
-                <Link to={`/marcas/edit/${marca.idmarcas}`} className="btn btn-secondary">Editar</Link>
-                <button onClick={handleDelete} className="btn btn-danger">Eliminar</button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="card">
+      <h3>{marca.descripcion_marcas}</h3>
+      <p>Estado: {marca.estado_marcas}</p>
+      <button onClick={() => navigate(`/marcas/${marca.idmarcas}/edit`)}>Editar</button>
+      <button onClick={() => handleDelete(marca.idmarcas)}>Eliminar</button>
+    </div>
+  );
 }
 
 export default MarcasCard;

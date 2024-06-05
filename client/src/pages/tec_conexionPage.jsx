@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useTecConexiones } from '../context/tec_conexionContext';
 import TecConexionCard from '../components/tec_conexionCard';
 import { Link } from 'react-router-dom';
+import './page.css'
 
 function TecConexionPage() {
   const { tecConexiones, loadTecConexiones, loading, error } = useTecConexiones();
@@ -15,7 +16,7 @@ function TecConexionPage() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className="page">
       <h1>Conexiones Técnicas</h1>
       <Link to="/tec_conexiones/new"><button>Crear Conexión Técnica</button></Link>
       {tecConexiones.map((tecConexion) => (

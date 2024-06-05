@@ -1,4 +1,3 @@
-// src/context/modelosContext.jsx
 import { createContext, useState, useContext, useEffect } from 'react';
 import {
   getModelosRequest,
@@ -50,8 +49,13 @@ export const ModelosProvider = ({ children }) => {
   };
 
   const deleteModelo = async (id) => {
-    await deleteModeloRequest(id);
-    setModelos(modelos.filter((modelo) => modelo.idmodelos !== id));
+    try {
+      await deleteModeloRequest(id);
+      setModelos(modelos.filter((modelo) => modelo.idmodelos !== id));
+    } catch (error) {
+      setError('Error al eliminar el modelo');
+      console.error(error);
+    }
   };
 
   useEffect(() => {

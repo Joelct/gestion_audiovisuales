@@ -1,0 +1,25 @@
+/* src/pages/EmpleadosPage.css */
+.page {
+    padding: 20px;
+    background-color: #f0f0f0;
+  }
+  
+  .page h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+  
+  .page button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .page button:hover {
+    background-color: #2980b9;
+  }
+  

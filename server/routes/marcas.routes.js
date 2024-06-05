@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import {
-    getMarcas,
-    getMarca,
-    createMarca,
-    updateMarca,
-    deleteMarca,
+  getMarcas,
+  getMarca,
+  createMarca,
+  updateMarca,
+  deleteMarca,
 } from '../controllers/marcas.controller.js';
 
 const router = Router();
@@ -16,3 +16,4 @@ router.put('/marcas/:id', updateMarca);
 router.delete('/marcas/:id', deleteMarca);
 
 export default router;
+

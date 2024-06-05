@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useUsuarios } from '../context/usuariosContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import './form.css';
 
 function UsuariosForm() {
   const { createUsuario, getUsuario, updateUsuario } = useUsuarios();
@@ -59,7 +60,7 @@ function UsuariosForm() {
         enableReinitialize
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className="form-container">
             <div>
               <label htmlFor="nombre_usuario">Nombre</label>
               <Field type="text" name="nombre_usuario" />

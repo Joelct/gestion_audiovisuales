@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import {
-    getModelos,
-    getModelo,
-    createModelo,
-    updateModelo,
-    deleteModelo,
+  getModelos,
+  getModelo,
+  createModelo,
+  updateModelo,
+  deleteModelo,
 } from '../controllers/modelos.controller.js';
 
 const router = Router();

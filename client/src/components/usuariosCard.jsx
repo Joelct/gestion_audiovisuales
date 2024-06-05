@@ -1,14 +1,15 @@
-// src/components/usuariosCard.jsx
 import { useUsuarios } from '../context/usuariosContext';
 import { useNavigate } from 'react-router-dom';
+import './card.css';
 
 function UsuariosCard({ usuario }) {
   const { deleteUsuario } = useUsuarios();
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="card">
       <h3>{usuario.nombre_usuario}</h3>
+      <p>Id: {usuario.idusuarios}</p>
       <p>Cédula: {usuario.cedula_usuario}</p>
       <p>Número de Carnet: {usuario.no_carnet}</p>
       <p>Tipo de Usuario: {usuario.tipo_usuario}</p>

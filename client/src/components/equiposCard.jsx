@@ -1,6 +1,7 @@
 import { deleteEquipoRequest } from "../api/equipos.api";
 import { useEquipos } from "../context/equiposContext";
 import { useNavigate } from "react-router-dom";
+import './card.css';
 
 function EquiposCard({ equipo }) {
   const { deleteEquipo } = useEquipos();
@@ -16,16 +17,16 @@ function EquiposCard({ equipo }) {
   };
 
   return (
-    <div>
+    <div className="card">
       <p>Id: {equipo.idequipos}</p>
-      <p>{equipo.descripcion_equipo}</p>
-      <p>{equipo.no_serial}</p>
-      <p>{equipo.serv_tag}</p>
-      <p>{equipo.tipo_equipo}</p>
-      <p>{equipo.descripcion_marca}</p>
-      <p>{equipo.descripcion_modelo}</p>
-      <p>{equipo.tec_conexion_descrip}</p>
-      <p>{equipo.estado_equipo}</p>
+      <p>Descripcion: {equipo.descripcion_equipos}</p>
+      <p>No. Serial: {equipo.no_serial}</p>
+      <p>Tag de servicio: {equipo.serv_tag}</p>
+      <p>Tipo de equipo: {equipo.tipo_equipo}</p>
+      <p>Descripcion Marca: {equipo.descripcion_marca}</p>
+      <p>Descripcion Modelo: {equipo.descripcion_modelo}</p>
+      <p> Tecnologia Conexion: {equipo.tec_conexion_descrip}</p>
+      <p>Estado: {equipo.estado_equipos}</p>
       <button onClick={() => handleDelete(equipo.idequipos)}>Delete</button>
       <button onClick={() => navigate(`/equipos/edit/${equipo.idequipos}`)}>Edit</button>
     </div>

@@ -1,9 +1,9 @@
-// src/pages/tec_conexionForm.jsx
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useTecConexiones } from '../context/tec_conexionContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import './form.css';
 
 function TecConexionForm() {
   const { createTecConexion, getTecConexion, updateTecConexion } = useTecConexiones();
@@ -50,7 +50,7 @@ function TecConexionForm() {
         enableReinitialize
       >
         {({ isSubmitting }) => (
-          <Form>
+          <Form className="form-container">
             <div>
               <label htmlFor="idtec_conexion">ID</label>
               <Field type="number" name="idtec_conexion" />

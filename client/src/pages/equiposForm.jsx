@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
 import { useEquipos } from '../context/equiposContext';
 import { crearEquipoRequest, editarEquipoRequest, getEquipoRequest } from '../api/equipos.api';
+import './form.css';
+
 
 function EquiposForm() {
     const { createEquipo } = useEquipos();
@@ -67,7 +69,7 @@ function EquiposForm() {
     };
 
     return (
-        <div>
+        <div className="form-container">
             <h1>{params.id ? "Editar Equipo" : "Crear Equipo"}</h1>
             <Formik
                 initialValues={equipoData || initialValues}
