@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/marcas';
+const API_URL = 'http://localhost:3000/api/empleados';
 
 export const getEmpleadosRequest = async () => {
   try {
