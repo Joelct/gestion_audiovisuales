@@ -27,8 +27,8 @@ function EquiposCard({ equipo }) {
       <p>Descripcion Modelo: {equipo.descripcion_modelo}</p>
       <p> Tecnologia Conexion: {equipo.tec_conexion_descrip}</p>
       <p>Estado: {equipo.estado_equipos}</p>
-      <button onClick={() => handleDelete(equipo.idequipos)}>Delete</button>
-      <button onClick={() => navigate(`/equipos/edit/${equipo.idequipos}`)}>Edit</button>
+      <button onClick={() => handleDelete(equipo.idequipos)}>Eliminar</button>
+      <button onClick={() => navigate(`/equipos/edit/${equipo.idequipos}`)}>Editar</button>
     </div>
   );
 }

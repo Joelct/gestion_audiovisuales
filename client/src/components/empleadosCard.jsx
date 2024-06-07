@@ -25,8 +25,8 @@ function EmpleadosCard({ empleado }) {
       <p>{empleado.tanda_labor}</p>
       <p>{empleado.fecha_ingreso}</p>
       <p>{empleado.estado_empleado}</p>
-      <button onClick={() => handleDelete(empleado.idempleados)}>Delete</button>
-      <button onClick={() => navigate(`/empleados/edit/${empleado.idempleados}`)}>Edit</button>
+      <button onClick={() => handleDelete(empleado.idempleados)}>Eliminar</button>
+      <button onClick={() => navigate(`/empleados/edit/${empleado.idempleados}`)}>Editar</button>
     </div>
   );
 }

@@ -88,9 +88,14 @@ function EmpleadosForm() {
               <Field type="text" name="cedula_empleados" />
               <ErrorMessage name="cedula_empleados" component="div" />
             </div>
-            <div>
+             <div>
               <label htmlFor="tanda_labor">Tanda Laboral</label>
-              <Field type="text" name="tanda_labor" />
+              <Field as="select" name="tanda_labor">
+                <option value="" label="Seleccione una opción" />
+                <option value="Matutino" label="Matutino" />
+                <option value="Vespertino" label="Vespertino" />
+                <option value="Nocturno" label="Nocturno" />
+              </Field>
               <ErrorMessage name="tanda_labor" component="div" />
             </div>
             <div>
