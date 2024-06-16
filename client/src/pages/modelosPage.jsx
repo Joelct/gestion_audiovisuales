@@ -1,16 +1,24 @@
-// src/pages/modelosPage.jsx
 import { useEffect } from 'react';
 import { useModelos } from '../context/modelosContext';
-import ModelosCard from '../components/modelosCard';
-import { Link } from 'react-router-dom';
-import './page.css'
+import { useNavigate, Link } from 'react-router-dom';
+import './page.css';
+import './card.css';
 
 function ModelosPage() {
-  const { modelos, loadModelos, loading, error } = useModelos();
+  const { modelos, loadModelos, deleteModelo, loading, error } = useModelos();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadModelos();
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await deleteModelo(id);
+    } catch (error) {
+      console.error('Error al eliminar el modelo:', error);
+    }
+  };
 
   if (loading) return <p>Cargando modelos...</p>;
   if (error) return <p>{error}</p>;
@@ -20,7 +28,12 @@ function ModelosPage() {
       <h1>Modelos</h1>
       <Link to="/modelos/new"><button>Crear Modelo</button></Link>
       {modelos.map((modelo) => (
-        <ModelosCard modelo={modelo} key={modelo.idmodelos} />
+        <div className="card" key={modelo.idmodelos}>
+          <h3>{modelo.descripcion_modelo}</h3>
+          <p>Estado: {modelo.estado_modelo}</p>
+          <button onClick={() => navigate(`/modelos/${modelo.idmodelos}/edit`)}>Editar</button>
+          <button onClick={() => handleDelete(modelo.idmodelos)}>Eliminar</button>
+        </div>
       ))}
     </div>
   );

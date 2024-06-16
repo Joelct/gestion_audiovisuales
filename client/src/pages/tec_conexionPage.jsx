@@ -1,12 +1,12 @@
-// src/pages/tec_conexionPage.jsx
 import { useEffect } from 'react';
 import { useTecConexiones } from '../context/tec_conexionContext';
-import TecConexionCard from '../components/tec_conexionCard';
-import { Link } from 'react-router-dom';
-import './page.css'
+import { useNavigate, Link } from 'react-router-dom';
+import './page.css';
+import './card.css';
 
 function TecConexionPage() {
-  const { tecConexiones, loadTecConexiones, loading, error } = useTecConexiones();
+  const { tecConexiones, loadTecConexiones, deleteTecConexion, loading, error } = useTecConexiones();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadTecConexiones();
@@ -20,7 +20,12 @@ function TecConexionPage() {
       <h1>Conexiones Técnicas</h1>
       <Link to="/tec_conexiones/new"><button>Crear Conexión Técnica</button></Link>
       {tecConexiones.map((tecConexion) => (
-        <TecConexionCard tecConexion={tecConexion} key={tecConexion.idtec_conexion} />
+        <div className="card" key={tecConexion.idtec_conexion}>
+          <h3>{tecConexion.tec_conexion_descrip}</h3>
+          <p>Estado: {tecConexion.tec_conexion_estado}</p>
+          <button onClick={() => navigate(`/tec_conexiones/${tecConexion.idtec_conexion}/edit`)}>Editar</button>
+          <button onClick={() => deleteTecConexion(tecConexion.idtec_conexion)}>Eliminar</button>
+        </div>
       ))}
     </div>
   );
