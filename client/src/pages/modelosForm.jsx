@@ -32,7 +32,8 @@ function ModelosForm() {
   }, [params.id, getModelo]);
 
   return (
-    <div>
+    <div className="max-w-2xl mx-auto mt-10 bg-gray-800 p-8 rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold text-white mb-6">{params.id ? "Editar Modelo" : "Crear Modelo"}</h1>
       <Formik
         initialValues={modelo}
         validationSchema={Yup.object({
@@ -53,28 +54,32 @@ function ModelosForm() {
         enableReinitialize
       >
         {({ isSubmitting }) => (
-          <Form className="form-container">
+          <Form className="space-y-6">
             <div>
-              <label htmlFor="idmodelos">ID</label>
-              <Field type="number" name="idmodelos" />
-              <ErrorMessage name="idmodelos" component="div" />
+              <label htmlFor="idmodelos" className="block text-sm font-medium text-gray-300">ID</label>
+              <Field type="number" name="idmodelos" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="idmodelos" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="descripcion_modelo">Descripción del modelo</label>
-              <Field type="text" name="descripcion_modelo" />
-              <ErrorMessage name="descripcion_modelo" component="div" />
+              <label htmlFor="descripcion_modelo" className="block text-sm font-medium text-gray-300">Descripción del modelo</label>
+              <Field type="text" name="descripcion_modelo" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="descripcion_modelo" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="estado_modelo">Estado del modelo</label>
-              <Field type="text" name="estado_modelo" />
-              <ErrorMessage name="estado_modelo" component="div" />
+              <label htmlFor="estado_modelo" className="block text-sm font-medium text-gray-300">Estado del modelo</label>
+              <Field as="select" name="estado_modelo" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md">
+                <option value="" label="Seleccione una opción"/>
+                <option value="Activo" label="Activo"/>
+                <option value="Inactivo" label="Inactivo"/>
+              </Field>
+              <ErrorMessage name="estado_modelo" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="idmarcas">ID de la marca</label>
-              <Field type="number" name="idmarcas" />
-              <ErrorMessage name="idmarcas" component="div" />
+              <label htmlFor="idmarcas" className="block text-sm font-medium text-gray-300">ID de la marca</label>
+              <Field type="number" name="idmarcas" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="idmarcas" component="div" className="text-red-500 text-sm mt-1" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} className="w-full py-2.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
               {isSubmitting ? 'Enviando...' : 'Guardar'}
             </button>
           </Form>

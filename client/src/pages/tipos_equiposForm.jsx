@@ -30,7 +30,8 @@ function TiposEquiposForm() {
   }, [params.id, getTipoEquipo]);
 
   return (
-    <div>
+    <div className="max-w-2xl mx-auto mt-10 bg-gray-800 p-8 rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold text-white mb-6">{params.id ? "Editar Tipo de Equipo" : "Crear Tipo de Equipo"}</h1>
       <Formik
         initialValues={tipoEquipo}
         validationSchema={Yup.object({
@@ -50,23 +51,27 @@ function TiposEquiposForm() {
         enableReinitialize
       >
         {({ isSubmitting }) => (
-          <Form className="form-container">
+          <Form className="space-y-6">
             <div>
-              <label htmlFor="id_tipos_equipos">ID</label>
-              <Field type="number" name="id_tipos_equipos" />
-              <ErrorMessage name="id_tipos_equipos" component="div" />
+              <label htmlFor="id_tipos_equipos" className="block text-sm font-medium text-gray-300">ID</label>
+              <Field type="number" name="id_tipos_equipos" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="id_tipos_equipos" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="tipos_equipos_descripcion">Descripción</label>
-              <Field type="text" name="tipos_equipos_descripcion" />
-              <ErrorMessage name="tipos_equipos_descripcion" component="div" />
+              <label htmlFor="tipos_equipos_descripcion" className="block text-sm font-medium text-gray-300">Descripción</label>
+              <Field type="text" name="tipos_equipos_descripcion" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="tipos_equipos_descripcion" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="tipos_equipos_estado">Estado</label>
-              <Field type="text" name="tipos_equipos_estado" />
-              <ErrorMessage name="tipos_equipos_estado" component="div" />
+              <label htmlFor="tipos_equipos_estado" className="block text-sm font-medium text-gray-300">Estado</label>
+              <Field as="select" name="tipos_equipos_estado" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md">
+                <option value="" label="Seleccione una opción"/>
+                <option value="Activo" label="Activo"/>
+                <option value="Inactivo" label="Inactivo"/>
+              </Field>
+              <ErrorMessage name="tipos_equipos_estado" component="div" className="text-red-500 text-sm mt-1" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting} className="w-full py-2.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
               {isSubmitting ? 'Enviando...' : 'Guardar'}
             </button>
           </Form>

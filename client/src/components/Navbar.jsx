@@ -4,9 +4,10 @@ import './Navbar.css';
 
 function Navbar() {
   return (
-    <nav>
-      <ul>
+    <div className= "bg-zinc-700 justify-between px-10 py-2">
         <h1>Gestion Audiovisuales</h1>
+
+        <ul className="flex space-x-8">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -32,7 +33,8 @@ function Navbar() {
           <Link to="/tipos_equipos">Tipos de Equipos</Link>
         </li>
       </ul>
-    </nav>
+    </div>
+
   );
 }
 

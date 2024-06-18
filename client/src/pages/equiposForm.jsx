@@ -6,7 +6,6 @@ import { useEquipos } from '../context/equiposContext';
 import { crearEquipoRequest, editarEquipoRequest, getEquipoRequest } from '../api/equipos.api';
 import './form.css';
 
-
 function EquiposForm() {
     const { createEquipo } = useEquipos();
     const params = useParams();
@@ -69,62 +68,67 @@ function EquiposForm() {
     };
 
     return (
-        <div className="form-container">
-            <h1>{params.id ? "Editar Equipo" : "Crear Equipo"}</h1>
+        <div className="max-w-2xl mx-auto mt-10 bg-gray-800 p-8 rounded-lg shadow-md">
+            <h1 className="text-2xl font-bold text-white mb-6">{params.id ? "Editar Equipo" : "Crear Equipo"}</h1>
             <Formik
                 initialValues={equipoData || initialValues}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
+                enableReinitialize={true}
             >
                 {({ isSubmitting }) => (
-                    <Form>
+                    <Form className="space-y-6">
                         <div>
-                            <label htmlFor="idequipos">ID del Equipo</label>
-                            <Field type="number" name="idequipos" disabled={!!params.id} />
-                            <ErrorMessage name="idequipos" component="div" />
+                            <label htmlFor="idequipos" className="block text-sm font-medium text-gray-300">ID del Equipo</label>
+                            <Field type="number" name="idequipos" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" disabled={!!params.id} />
+                            <ErrorMessage name="idequipos" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
                         <div>
-                            <label htmlFor="descripcion_equipo">Descripción del Equipo</label>
-                            <Field type="text" name="descripcion_equipo" />
-                            <ErrorMessage name="descripcion_equipo" component="div" />
+                            <label htmlFor="descripcion_equipo" className="block text-sm font-medium text-gray-300">Descripción del Equipo</label>
+                            <Field type="text" name="descripcion_equipo" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+                            <ErrorMessage name="descripcion_equipo" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
                         <div>
-                            <label htmlFor="no_serial">Número de Serie</label>
-                            <Field type="number" name="no_serial" />
-                            <ErrorMessage name="no_serial" component="div" />
+                            <label htmlFor="no_serial" className="block text-sm font-medium text-gray-300">Número de Serie</label>
+                            <Field type="number" name="no_serial" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+                            <ErrorMessage name="no_serial" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
                         <div>
-                            <label htmlFor="serv_tag">Service Tag</label>
-                            <Field type="text" name="serv_tag" />
-                            <ErrorMessage name="serv_tag" component="div" />
+                            <label htmlFor="serv_tag" className="block text-sm font-medium text-gray-300">Service Tag</label>
+                            <Field type="text" name="serv_tag" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+                            <ErrorMessage name="serv_tag" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
                         <div>
-                            <label htmlFor="tipo_equipo">Tipo de Equipo</label>
-                            <Field type="text" name="tipo_equipo" />
-                            <ErrorMessage name="tipo_equipo" component="div" />
+                            <label htmlFor="tipo_equipo" className="block text-sm font-medium text-gray-300">Tipo de Equipo</label>
+                            <Field type="text" name="tipo_equipo" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+                            <ErrorMessage name="tipo_equipo" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
                         <div>
-                            <label htmlFor="descripcion_marca">Descripción de la Marca</label>
-                            <Field type="text" name="descripcion_marca" />
-                            <ErrorMessage name="descripcion_marca" component="div" />
+                            <label htmlFor="descripcion_marca" className="block text-sm font-medium text-gray-300">Descripción de la Marca</label>
+                            <Field type="text" name="descripcion_marca" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+                            <ErrorMessage name="descripcion_marca" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
                         <div>
-                            <label htmlFor="descripcion_modelo">Descripción del Modelo</label>
-                            <Field type="text" name="descripcion_modelo" />
-                            <ErrorMessage name="descripcion_modelo" component="div" />
+                            <label htmlFor="descripcion_modelo" className="block text-sm font-medium text-gray-300">Descripción del Modelo</label>
+                            <Field type="text" name="descripcion_modelo" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+                            <ErrorMessage name="descripcion_modelo" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
                         <div>
-                            <label htmlFor="tec_conexion_descrip">Descripción de la Conexión Técnica</label>
-                            <Field type="text" name="tec_conexion_descrip" />
-                            <ErrorMessage name="tec_conexion_descrip" component="div" />
+                            <label htmlFor="tec_conexion_descrip" className="block text-sm font-medium text-gray-300">Descripción de la Conexión Técnica</label>
+                            <Field type="text" name="tec_conexion_descrip" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+                            <ErrorMessage name="tec_conexion_descrip" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
                         <div>
-                            <label htmlFor="estado_equipo">Estado del Equipo</label>
-                            <Field type="text" name="estado_equipo" />
-                            <ErrorMessage name="estado_equipo" component="div" />
+                            <label htmlFor="estado_equipo" className="block text-sm font-medium text-gray-300">Estado del Equipo</label>
+                            <Field as="select" name="estado_equipo" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md">
+                                <option value="" label="Seleccione una opción" />
+                                <option value="Activo" label="Activo" />
+                                <option value="Inactivo" label="Inactivo" />
+                            </Field>
+                            <ErrorMessage name="estado_equipo" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
-                        <button type="submit" disabled={isSubmitting}>
-                            Guardar equipo
+                        <button type="submit" disabled={isSubmitting} className="w-full py-2.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
+                            {isSubmitting ? 'Guardando...' : 'Guardar equipo'}
                         </button>
                     </Form>
                 )}

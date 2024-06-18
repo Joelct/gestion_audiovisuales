@@ -11,6 +11,30 @@ function EmpleadosForm() {
   const navigate = useNavigate();
   const [empleadoData, setEmpleadoData] = useState(null);
 
+  const validateCedula = (cedula_empleados) => {
+    let numero = 0;
+    let resultado = 0;
+    let suma = 0;
+
+    for (let i = 0; i < cedula_empleados.length; i++) {
+        numero = parseInt(cedula_empleados.charAt(i), 10);
+        if (i % 2 !== 0) {
+            numero = numero * 2;
+            if (numero > 9) {
+                numero = numero - 9;
+            }
+        }
+        suma = suma + numero;
+    }
+
+    if (suma % 10 !== 0) {
+        resultado = 10 - (suma % 10);
+        return resultado === numero;
+    } else {
+        return true;
+    }
+  };
+
   useEffect(() => {
     if (params.id) {
       loadEmpleado(params.id);
@@ -29,7 +53,10 @@ function EmpleadosForm() {
   const validationSchema = Yup.object({
     idempleados: Yup.number(),
     nombre_empleados: Yup.string().required('El nombre es requerido'),
-    cedula_empleados: Yup.string().required('La cédula es requerida'),
+    cedula_empleados: Yup.string()
+    .required('La cédula es requerida')
+    .matches(/^\d{11}$/, 'La cédula debe tener 11 dígitos')
+    .test('is-valid-cedula', 'La cédula no es válida', value => validateCedula(value)),
     tanda_labor: Yup.string().required('La tanda laboral es requerida'),
     fecha_ingreso: Yup.date().required('La fecha de ingreso es requerida'),
     estado_empleado: Yup.string().required('El estado del empleado es requerido')
@@ -63,8 +90,8 @@ function EmpleadosForm() {
   };
 
   return (
-    <div>
-      <h1>{params.id ? "Editar Empleado" : "Crear Empleado"}</h1>
+    <div className="max-w-2xl mx-auto mt-10 bg-gray-800 p-8 rounded-lg shadow-md">
+      <h1 className="text-2xl font-bold text-white mb-6">{params.id ? "Editar Empleado" : "Crear Empleado"}</h1>
       <Formik
         initialValues={empleadoData || initialValues}
         validationSchema={validationSchema}
@@ -72,44 +99,48 @@ function EmpleadosForm() {
         enableReinitialize={true}
       >
         {({ isSubmitting }) => (
-          <Form className="form-container">
+          <Form className="space-y-6">
             <div>
-              <label htmlFor="idempleados">ID del Empleado</label>
-              <Field type="number" name="idempleados" disabled={!!params.id} />
-              <ErrorMessage name="idempleados" component="div" />
+              <label htmlFor="idempleados" className="block text-sm font-medium text-gray-300">ID del Empleado</label>
+              <Field type="number" name="idempleados" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" disabled={!!params.id} />
+              <ErrorMessage name="idempleados" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="nombre_empleados">Nombre del Empleado</label>
-              <Field type="text" name="nombre_empleados" />
-              <ErrorMessage name="nombre_empleados" component="div" />
+              <label htmlFor="nombre_empleados" className="block text-sm font-medium text-gray-300">Nombre del Empleado</label>
+              <Field type="text" name="nombre_empleados" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="nombre_empleados" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="cedula_empleados">Cédula del Empleado</label>
-              <Field type="text" name="cedula_empleados" />
-              <ErrorMessage name="cedula_empleados" component="div" />
+              <label htmlFor="cedula_empleados" className="block text-sm font-medium text-gray-300">Cédula del Empleado</label>
+              <Field type="text" name="cedula_empleados" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="cedula_empleados" component="div" className="text-red-500 text-sm mt-1" />
             </div>
-             <div>
-              <label htmlFor="tanda_labor">Tanda Laboral</label>
-              <Field as="select" name="tanda_labor">
+            <div>
+              <label htmlFor="tanda_labor" className="block text-sm font-medium text-gray-300">Tanda Laboral</label>
+              <Field as="select" name="tanda_labor" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md">
                 <option value="" label="Seleccione una opción" />
                 <option value="Matutino" label="Matutino" />
                 <option value="Vespertino" label="Vespertino" />
                 <option value="Nocturno" label="Nocturno" />
               </Field>
-              <ErrorMessage name="tanda_labor" component="div" />
+              <ErrorMessage name="tanda_labor" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="fecha_ingreso">Fecha de Ingreso</label>
-              <Field type="date" name="fecha_ingreso" />
-              <ErrorMessage name="fecha_ingreso" component="div" />
+              <label htmlFor="fecha_ingreso" className="block text-sm font-medium text-gray-300">Fecha de Ingreso</label>
+              <Field type="date" name="fecha_ingreso" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="fecha_ingreso" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="estado_empleado">Estado del Empleado</label>
-              <Field type="text" name="estado_empleado" />
-              <ErrorMessage name="estado_empleado" component="div" />
+              <label htmlFor="estado_empleado" className="block text-sm font-medium text-gray-300">Estado del Empleado</label>
+              <Field as="select" name="estado_empleado" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md">
+                <option value="" label="Seleccione una opción" />
+                <option value="Activo" label="Activo" />
+                <option value="Inactivo" label="Inactivo" />
+              </Field>
+              <ErrorMessage name="estado_empleado" component="div" className="text-red-500 text-sm mt-1" />
             </div>
-            <button type="submit" disabled={isSubmitting}>
-              Guardar empleado
+            <button type="submit" disabled={isSubmitting} className="w-full py-2.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
+              {isSubmitting ? 'Guardando...' : 'Guardar empleado'}
             </button>
           </Form>
         )}

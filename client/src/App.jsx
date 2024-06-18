@@ -27,6 +27,9 @@ import './App.css';
 
 function App() {
   return (
+    <div className='bg-zinc-900 h-screen'>
+    <Navbar />
+    <div className='container mx-auto py-4'>
     <EmpleadosContextProvider>
       <MarcasContextProvider>
         <EquiposContextProvider>
@@ -34,7 +37,6 @@ function App() {
             <TecConexionProvider>
               <UsuariosProvider>
                 <TiposEquiposProvider>
-                  <Navbar />
                   <Routes>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/empleados" element={<EmpleadosPage />} />
@@ -67,6 +69,8 @@ function App() {
         </EquiposContextProvider>
       </MarcasContextProvider>
     </EmpleadosContextProvider>
+    </div>
+    </div>
   );
 }
 

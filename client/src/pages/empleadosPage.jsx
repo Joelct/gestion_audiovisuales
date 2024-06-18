@@ -26,10 +26,11 @@ function EmpleadosPage() {
 
   return (
     <div className="page">
-      <h1>Empleados</h1>
+      <h1 className='text-3xl text-white font bold text-center'>Empleados</h1>
       <Link to="/empleados/new"><button>Crear Empleado</button></Link>
       {empleados.map((empleado) => (
-        <div className="card" key={empleado.idempleados}>
+        <div className='bg-slate-300'>
+        <div className="grid grid-cols-3" key={empleado.idempleados}>
           <p>Id: {empleado.idempleados}</p>
           <p>{empleado.nombre_empleados}</p>
           <p>{empleado.cedula_empleados}</p>
@@ -39,6 +40,7 @@ function EmpleadosPage() {
           <button onClick={() => handleDelete(empleado.idempleados)}>Eliminar</button>
           <button onClick={() => navigate(`/empleados/edit/${empleado.idempleados}`)}>Editar</button>
         </div>
+      </div>
       ))}
     </div>
   );
