@@ -10,12 +10,15 @@ import usuariosRouter from './routes/usuarios.routes.js';
 import marcasRouter from './routes/marcas.routes.js';
 import modelosRouter from './routes/modelos.routes.js';
 import tec_conexionRouter from './routes/tec_conexion.routes.js';
+import { register, login } from './controllers/login.controller.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
+app.post('/api/register', register);
+app.post('/api/login', login);
 app.use('/api', indexRoutes);
 app.use('/api', empleadosRoutes);
 app.use('/api', tiposEquiposRoutes);

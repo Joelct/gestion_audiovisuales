@@ -28,11 +28,11 @@ export const getTecConexion = async (req, res) => {
 
 // Crear una nueva tecnología de conexión
 export const createTecConexion = async (req, res) => {
-    const { idtec_conexion, tec_conexion_descrip, tec_conexion_estado } = req.body;
+    const { idtec_conexion, descripcion_tec_conexion, estado_tec_conexion } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO tec_conexion (idtec_conexion, tec_conexion_descrip, tec_conexion_estado) VALUES (?, ?, ?)',
-            [idtec_conexion, tec_conexion_descrip, tec_conexion_estado]
+            'INSERT INTO tec_conexion (idtec_conexion, descripcion_tec_conexion, estado_tec_conexion) VALUES (?, ?, ?)',
+            [idtec_conexion, descripcion_tec_conexion, estado_tec_conexion]
         );
         res.status(201).json({ 
             id: result.insertId,
@@ -47,11 +47,11 @@ export const createTecConexion = async (req, res) => {
 // Actualizar una tecnología de conexión
 export const updateTecConexion = async (req, res) => {
     const { id } = req.params;
-    const { tec_conexion_descrip, tec_conexion_estado } = req.body;
+    const { descripcion_tec_conexion, estado_tec_conexion } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE tec_conexion SET tec_conexion_descrip = ?, tec_conexion_estado = ? WHERE idtec_conexion = ?',
-            [tec_conexion_descrip, tec_conexion_estado, id]
+            'UPDATE tec_conexion SET descripcion_tec_conexion = ?, estado_tec_conexion = ? WHERE idtec_conexion = ?',
+            [descripcion_tec_conexion, estado_tec_conexion, id]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Tecnología de conexión no encontrada' });
