@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEmpleados } from '../context/empleadosContext';
+import moment from 'moment';
 import './form.css';
 
 function EmpleadosForm() {
@@ -10,6 +11,7 @@ function EmpleadosForm() {
   const params = useParams();
   const navigate = useNavigate();
   const [empleadoData, setEmpleadoData] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const validateCedula = (cedula_empleados) => {
     let numero = 0;
@@ -54,24 +56,28 @@ function EmpleadosForm() {
     idempleados: Yup.number(),
     nombre_empleados: Yup.string().required('El nombre es requerido'),
     cedula_empleados: Yup.string()
-    .required('La cédula es requerida')
-    .matches(/^\d{11}$/, 'La cédula debe tener 11 dígitos')
-    .test('is-valid-cedula', 'La cédula no es válida', value => validateCedula(value)),
+      .required('La cédula es requerida')
+      .matches(/^\d{11}$/, 'La cédula debe tener 11 dígitos')
+      .test('is-valid-cedula', 'La cédula no es válida', value => validateCedula(value)),
     tanda_labor: Yup.string().required('La tanda laboral es requerida'),
-    fecha_ingreso: Yup.date().required('La fecha de ingreso es requerida'),
+    fecha_ingreso: Yup.string().required('La fecha de ingreso es requerida'),
     estado_empleado: Yup.string().required('El estado del empleado es requerido')
   });
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const formattedValues = {
+      ...values,
+    };
+
     try {
       if (params.id) {
-        await updateEmpleado(params.id, values);
+        await updateEmpleado(params.id, formattedValues);
       } else {
-        await createEmpleado(values);
+        await createEmpleado(formattedValues);
       }
       resetForm();
-      alert('Empleado guardado exitosamente');
-      navigate('/empleados'); // Redireccionar a la página de empleados
+      setSuccessMessage('Empleado guardado exitosamente');
+      navigate('/empleados');
     } catch (error) {
       console.error('Error al guardar el empleado:', error);
       alert('Error al guardar el empleado');
@@ -83,7 +89,10 @@ function EmpleadosForm() {
   const loadEmpleado = async (id) => {
     try {
       const empleado = await getEmpleado(id);
-      setEmpleadoData(empleado);
+      setEmpleadoData({
+        ...empleado,
+        fecha_ingreso: moment.utc(empleado.fecha_ingreso).format('YYYY-MM-DD')
+      });
     } catch (error) {
       console.error('Error al cargar el empleado:', error);
     }
@@ -91,6 +100,7 @@ function EmpleadosForm() {
 
   return (
     <div className="max-w-2xl mx-auto mt-10 bg-gray-800 p-8 rounded-lg shadow-md">
+      
       <h1 className="text-2xl font-bold text-white mb-6">{params.id ? "Editar Empleado" : "Crear Empleado"}</h1>
       <Formik
         initialValues={empleadoData || initialValues}
@@ -145,7 +155,8 @@ function EmpleadosForm() {
           </Form>
         )}
       </Formik>
-    </div>
+      {successMessage && <p className="text-green-500 mt-4">{successMessage}</p>}
+    </div> 
   );
 }
 

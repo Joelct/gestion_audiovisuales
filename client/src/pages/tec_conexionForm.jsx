@@ -11,8 +11,8 @@ function TecConexionForm() {
   const params = useParams();
   const [tecConexion, setTecConexion] = useState({
     idtec_conexion: '',
-    tec_conexion_descrip: '',
-    tex_conexion_estado: ''
+    descripcion_tec_conexion: '',
+    estado_tec_conexion: ''
   });
 
   useEffect(() => {
@@ -21,8 +21,8 @@ function TecConexionForm() {
         const tecConexion = await getTecConexion(params.id);
         setTecConexion({
           idtec_conexion: tecConexion.idtec_conexion,
-          tec_conexion_descrip: tecConexion.tec_conexion_descrip,
-          tex_conexion_estado: tecConexion.tex_conexion_estado
+          descripcion_tec_conexion: tecConexion.descripcion_tec_conexion,
+          estado_tec_conexion: tecConexion.estado_tec_conexion
         });
       }
     };
@@ -36,8 +36,8 @@ function TecConexionForm() {
         initialValues={tecConexion}
         validationSchema={Yup.object({
           idtec_conexion: Yup.number().required('El ID es obligatorio'),
-          tec_conexion_descrip: Yup.string().required('La descripción es obligatoria'),
-          tex_conexion_estado: Yup.string().required('El estado es obligatorio'),
+          descripcion_tec_conexion: Yup.string().required('La descripción es obligatoria'),
+          estado_tec_conexion: Yup.string().required('El estado es obligatorio'),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           if (params.id) {
@@ -58,18 +58,18 @@ function TecConexionForm() {
               <ErrorMessage name="idtec_conexion" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="tec_conexion_descrip" className="block text-sm font-medium text-gray-300">Descripción de la conexión técnica</label>
-              <Field type="text" name="tec_conexion_descrip" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
-              <ErrorMessage name="tec_conexion_descrip" component="div" className="text-red-500 text-sm mt-1" />
+              <label htmlFor="descripcion_tec_conexion" className="block text-sm font-medium text-gray-300">Descripción de la conexión técnica</label>
+              <Field type="text" name="descripcion_tec_conexion" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md" />
+              <ErrorMessage name="descripcion_tec_conexion" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <div>
-              <label htmlFor="tex_conexion_estado" className="block text-sm font-medium text-gray-300">Estado de la conexión técnica</label>
-              <Field as="select" name="tex_conexion_estado" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md">
+              <label htmlFor="estado_tec_conexion" className="block text-sm font-medium text-gray-300">Estado de la conexión técnica</label>
+              <Field as="select" name="estado_tec_conexion" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md">
                 <option value="" label="Seleccione una opción"/>
                 <option value="Activo" label="Activo"/>
                 <option value="Inactivo" label="Inactivo"/>
               </Field>
-              <ErrorMessage name="tex_conexion_estado" component="div" className="text-red-500 text-sm mt-1" />
+              <ErrorMessage name="estado_tec_conexion" component="div" className="text-red-500 text-sm mt-1" />
             </div>
             <button type="submit" disabled={isSubmitting} className="w-full py-2.5 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
               {isSubmitting ? 'Enviando...' : 'Guardar'}
