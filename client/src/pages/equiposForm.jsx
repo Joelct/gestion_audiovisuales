@@ -122,8 +122,9 @@ function EquiposForm() {
                             <label htmlFor="estado_equipo" className="block text-sm font-medium text-gray-300">Estado del Equipo</label>
                             <Field as="select" name="estado_equipo" className="mt-1 block w-full p-2.5 bg-gray-700 text-white rounded-md">
                                 <option value="" label="Seleccione una opción" />
-                                <option value="Activo" label="Activo" />
-                                <option value="Inactivo" label="Inactivo" />
+                                <option value="Disponible" label="Disponible" />
+                                <option value="Prestado" label="Prestado" />
+                                <option value="Reparacion" label="Reparación" />
                             </Field>
                             <ErrorMessage name="estado_equipo" component="div" className="text-red-500 text-sm mt-1" />
                         </div>
