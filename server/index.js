@@ -10,6 +10,7 @@ import usuariosRouter from './routes/usuarios.routes.js';
 import marcasRouter from './routes/marcas.routes.js';
 import modelosRouter from './routes/modelos.routes.js';
 import tec_conexionRouter from './routes/tec_conexion.routes.js';
+import procesosRouter from './routes/procesos.routes.js';
 import { register, login } from './controllers/login.controller.js';
 
 const app = express();
@@ -26,6 +27,7 @@ app.use('/api', equiposRouter);
 app.use('/api', usuariosRouter);
 app.use('/api', modelosRouter);
 app.use('/api', marcasRouter);
+app.use('/api', procesosRouter);
 app.use('/api', tec_conexionRouter);
 
 

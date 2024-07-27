@@ -18,6 +18,7 @@ const Navbar = () => {
               <Link to="/tec_conexiones" className="text-white mx-2">Conexiones Técnicas</Link>
               <Link to="/usuarios" className="text-white mx-2">Usuarios</Link>
               <Link to="/tipos_equipos" className="text-white mx-2">Tipos de Equipos</Link>
+              <Link to="/procesos" className="bg-yellow-500 text-black font-bold py-1 px-3 rounded mx-2 hover:bg-yellow-600 transition duration-300">Procesos</Link>
               <button onClick={logout} className="text-white mx-2">Logout</button>
             </>
           ) : (

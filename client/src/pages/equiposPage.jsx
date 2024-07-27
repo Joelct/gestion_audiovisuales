@@ -30,11 +30,13 @@ function EquiposPage() {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-white">Equipos</h1>
-          <Link to="/equipos/new">
-            <button className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
-              Crear Equipo
-            </button>
-          </Link>
+          <div className="flex space-x-2">
+            <Link to="/equipos/new">
+              <button className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700">
+                Crear Equipo
+              </button>
+            </Link>
+          </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {equipos.map((equipo) => (

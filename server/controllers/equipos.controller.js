@@ -28,11 +28,11 @@ export const getEquipo = async (req, res) => {
 
 // Crear un nuevo equipo
 export const createEquipo = async (req, res) => {
-    const { idequipos, descripcion_equipos, no_serial, serv_tag, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos } = req.body;
+    const { idequipos, descripcion_equipos, no_serial, serv_tag, tipo_equipo, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO equipos (idequipos, descripcion_equipos, no_serial, serv_tag, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-            [idequipos, descripcion_equipos, no_serial, serv_tag, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos]
+            'INSERT INTO equipos (idequipos, descripcion_equipos, no_serial, serv_tag, tipo_equipo, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+            [idequipos, descripcion_equipos, no_serial, serv_tag, tipo_equipo, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos]
         );
         res.status(201).json({ 
             id: result.insertId,
@@ -47,11 +47,11 @@ export const createEquipo = async (req, res) => {
 // Actualizar un equipo
 export const updateEquipo = async (req, res) => {
     const { id } = req.params;
-    const { descripcion_equipos, no_serial, serv_tag, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos } = req.body;
+    const { descripcion_equipos, no_serial, serv_tag, tipo_equipo, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos } = req.body;
     try {
         const [result] = await pool.query(
-            'UPDATE equipos SET descripcion_equipos = ?, no_serial = ?, serv_tag = ?, descripcion_marcas = ?, descripcion_modelo = ?, tec_conexion_descripcion = ?, estado_equipos = ? WHERE idequipos = ?',
-            [descripcion_equipos, no_serial, serv_tag, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos, id]
+            'UPDATE equipos SET descripcion_equipos = ?, no_serial = ?, serv_tag = ?, tipo_equipo = ?, descripcion_marcas = ?, descripcion_modelo = ?, tec_conexion_descripcion = ?, estado_equipos = ? WHERE idequipos = ?',
+            [descripcion_equipos, no_serial, serv_tag, tipo_equipo, descripcion_marcas, descripcion_modelo, tec_conexion_descripcion, estado_equipos, id]
         );
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: 'Equipo no encontrado' });

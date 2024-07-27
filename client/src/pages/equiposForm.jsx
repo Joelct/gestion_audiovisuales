@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
-import { useEquipos } from '../context/equiposContext';
+// import { useEquipos } from '../context/equiposContext';
 import { crearEquipoRequest, editarEquipoRequest, getEquipoRequest } from '../api/equipos.api';
 import './form.css';
 
 function EquiposForm() {
-    const { createEquipo } = useEquipos();
+    // const { createEquipo } = useEquipos();
     const params = useParams();
     const [equipoData, setEquipoData] = useState(null);
 
