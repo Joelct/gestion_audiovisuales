@@ -42,8 +42,8 @@ function UsuariosPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {usuarios.map((usuario) => (
             <div key={usuario.idusuarios} className="bg-gray-800 p-6 rounded-lg shadow-md">
+              <h2 className="font-bold text-white mb-2">Id: {usuario.idusuarios}</h2>
               <h3 className="text-xl font-bold text-white mb-2">{usuario.nombre_usuario}</h3>
-              <p className="text-gray-400 mb-2">Id: {usuario.idusuarios}</p>
               <p className="text-gray-400 mb-2">Cédula: {usuario.cedula_usuario}</p>
               <p className="text-gray-400 mb-2">Número de Carnet: {usuario.no_carnet}</p>
               <p className="text-gray-400 mb-2">Tipo de Usuario: {usuario.tipo_usuario}</p>

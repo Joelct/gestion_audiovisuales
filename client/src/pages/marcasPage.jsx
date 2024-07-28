@@ -38,6 +38,7 @@ function MarcasPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {marcas.map((marca) => (
             <div key={marca.idmarcas} className="bg-gray-800 p-6 rounded-lg shadow-md">
+              <h2 className="font-bold text-white mb-2"> ID: {marca.idmarcas}</h2>
               <h3 className="text-xl font-bold text-white mb-2">{marca.descripcion_marcas}</h3>
               <p className="text-gray-400 mb-4">Estado: {marca.estado_marcas}</p>
               <div className="flex justify-between">

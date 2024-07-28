@@ -29,6 +29,7 @@ function TecConexionPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {tecConexiones.map((tecConexion) => (
             <div key={tecConexion.idtec_conexion} className="bg-gray-800 p-6 rounded-lg shadow-md">
+              <h2 className="font-bold text-white mb-2">ID: {tecConexion.idtec_conexion}</h2>
               <h3 className="text-xl font-bold text-white mb-2">{tecConexion.descripcion_tec_conexion}</h3>
               <p className="text-gray-400 mb-4">Estado: {tecConexion.estado_tec_conexion}</p>
               <div className="flex justify-between">

@@ -33,7 +33,7 @@ function ProcesosPage() {
     };
 
     const procesosFiltrados = procesos.filter((proceso) => {
-      const cumpleFiltroNoPrestamo = proceso.no_prestamo.toLowerCase().includes(filtroNoPrestamo.toLowerCase());
+      const cumpleFiltroNoPrestamo = proceso.no_prestamo.toString().includes(filtroNoPrestamo);
       const cumpleFiltroEmpleado = proceso.empleado.toLowerCase().includes(filtroEmpleado.toLowerCase());
       const cumpleFiltroEquipo = proceso.equipo.toLowerCase().includes(filtroEquipo.toLowerCase());
       const cumpleFiltroUsuario = proceso.usuario.toLowerCase().includes(filtroUsuario.toLowerCase());
@@ -53,7 +53,7 @@ function ProcesosPage() {
   
       const columns = ['No. Préstamo', 'Empleado', 'Equipo', 'Usuario', 'Fecha de prestamo', 'Fecha de devolución', 'Comentario', 'Estado'];
       const data = procesosFiltrados.map(proceso => [
-        proceso.no_proceso,
+        proceso.no_prestamo,
         proceso.empleado,
         proceso.equipo,
         proceso.usuario,
@@ -125,7 +125,7 @@ function ProcesosPage() {
                 type="text"
                 value={filtroUsuario}
                 onChange={(e) => setFiltroUsuario(e.target.value)}
-                placeholder="Filtrar por Equipo"
+                placeholder="Filtrar por Usuario"
                 className="px-4 py-2 rounded-md mb-2"
               />
               <p className='text-white'>Fecha préstamo</p>
@@ -157,11 +157,17 @@ function ProcesosPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {procesosFiltrados.map((proceso) => (
                 <div key={proceso.no_prestamo} className="bg-gray-800 p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold text-white mb-2">{proceso.comentario}</h3>
+                  <h3 className="text-xl font-bold text-white mb-2"> No. Préstamo: {proceso.no_prestamo}</h3>
+                  <p className="text-gray-400 mb-4">Empleado: {proceso.empleado}</p>
+                  <p className="text-gray-400 mb-4">Equipo: {proceso.equipo}</p>
+                  <p className="text-gray-400 mb-4">Usuario: {proceso.usuario}</p>
+                  <p className="text-gray-400 mb-4">Fecha de préstamo: {moment.utc(proceso.fecha_prestamo).format('YYYY-MM-DD')}</p>
+                  <p className="text-gray-400 mb-4">Fecha de devolución: {moment.utc(proceso.fecha_devolucion).format('YYYY-MM-DD')}</p>
+                  <p className="text-gray-400 mb-4">Comentario: {proceso.comentario}</p>
                   <p className="text-gray-400 mb-4">Estado: {proceso.estado}</p>
                   <div className="flex justify-between">
                     <button
-                      onClick={() => navigate(`/tec_conexiones/${proceso.no_prestamo}/edit`)}
+                      onClick={() => navigate(`/procesos/${proceso.no_prestamo}/edit`)}
                       className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700"
                     >
                       Editar

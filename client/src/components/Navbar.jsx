@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/authContext';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -7,7 +8,7 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-white font-bold">Inicio</Link>
+        <Link to="/" className="bg-blue-500 text-black font-bold py-1 px-3 rounded mx-2 hover:bg-blue-600 transition duration-300">Inicio</Link>
         <div className="flex items-center">
           {user ? (
             <>
@@ -19,7 +20,10 @@ const Navbar = () => {
               <Link to="/usuarios" className="text-white mx-2">Usuarios</Link>
               <Link to="/tipos_equipos" className="text-white mx-2">Tipos de Equipos</Link>
               <Link to="/procesos" className="bg-yellow-500 text-black font-bold py-1 px-3 rounded mx-2 hover:bg-yellow-600 transition duration-300">Procesos</Link>
-              <button onClick={logout} className="text-white mx-2">Logout</button>
+              <button onClick={logout} className="text-white mx-2 flex items-center">
+             <FaSignOutAlt className='text-2xl'/>
+              </button>
+              
             </>
           ) : (
             <>

@@ -144,8 +144,8 @@ function EmpleadosPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {empleadosFiltrados.map((empleado) => (
             <div key={empleado.idempleados} className="bg-gray-800 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold text-white mb-2">ID: {empleado.idempleados}</h3>
-              <p className="text-gray-400 mb-2">Nombre: {empleado.nombre_empleados}</p>
+              <h2 className="font-bold text-white mb-2">ID: {empleado.idempleados}</h2>
+              <h3 className="text-xl font-bold text-white mb-2">Nombre: {empleado.nombre_empleados}</h3>
               <p className="text-gray-400 mb-2">Cédula: {empleado.cedula_empleados}</p>
               <p className="text-gray-400 mb-2">Tanda Laboral: {empleado.tanda_labor}</p>
               <p className="text-gray-400 mb-2">Fecha de Ingreso: {moment.utc(empleado.fecha_ingreso).format('YYYY-MM-DD')}</p>

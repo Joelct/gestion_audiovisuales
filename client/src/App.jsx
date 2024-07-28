@@ -44,7 +44,7 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <AuthProvider>
-      <div className='bg-zinc-900 h-screen'>
+      <div className='bg-zinc-900 min-h-screen flex flex-col'>
         <Navbar />
         <div className='container mx-auto py-4'>
           <EmpleadosContextProvider>
@@ -64,7 +64,7 @@ function App() {
                             <Route path="/empleados/edit/:id" element={<ProtectedRoute><EmpleadosForm /></ProtectedRoute>} />
                             <Route path="/marcas" element={<ProtectedRoute><MarcasPage /></ProtectedRoute>} />
                             <Route path="/marcas/new" element={<ProtectedRoute><MarcasForm /></ProtectedRoute>} />
-                            <Route path="/marcas/edit/:id" element={<ProtectedRoute><MarcasForm /></ProtectedRoute>} />
+                            <Route path="/marcas/:id/edit" element={<ProtectedRoute><MarcasForm /></ProtectedRoute>} />
                             <Route path="/equipos" element={<ProtectedRoute><EquiposPage /></ProtectedRoute>} />
                             <Route path="/equipos/new" element={<ProtectedRoute><EquiposForm /></ProtectedRoute>} />
                             <Route path="/equipos/edit/:id" element={<ProtectedRoute><EquiposForm /></ProtectedRoute>} />
