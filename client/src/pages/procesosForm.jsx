@@ -43,7 +43,8 @@ function ProcesosForm() {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         const formattedValues = {
-            ...values
+            ...values,
+            fecha_devolucion: values.fecha_devolucion || null
         };
 
         try {

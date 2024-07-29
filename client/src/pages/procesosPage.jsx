@@ -49,7 +49,7 @@ function ProcesosPage() {
       const fechaActual = moment().format('YYYY-MM-DD');
       
       // Agregar la fecha de generación en la parte superior
-      doc.text(`Fecha de generación: ${fechaActual}`, 14, 15);
+      doc.text(`Fecha de reporte: ${fechaActual}`, 14, 15);
   
       const columns = ['No. Préstamo', 'Empleado', 'Equipo', 'Usuario', 'Fecha de prestamo', 'Fecha de devolución', 'Comentario', 'Estado'];
       const data = procesosFiltrados.map(proceso => [
@@ -162,7 +162,8 @@ function ProcesosPage() {
                   <p className="text-gray-400 mb-4">Equipo: {proceso.equipo}</p>
                   <p className="text-gray-400 mb-4">Usuario: {proceso.usuario}</p>
                   <p className="text-gray-400 mb-4">Fecha de préstamo: {moment.utc(proceso.fecha_prestamo).format('YYYY-MM-DD')}</p>
-                  <p className="text-gray-400 mb-4">Fecha de devolución: {moment.utc(proceso.fecha_devolucion).format('YYYY-MM-DD')}</p>
+                  {/* <p className="text-gray-400 mb-4">Fecha de devolución: {moment.utc(proceso.fecha_devolucion).format('YYYY-MM-DD')}</p> */}
+                  <p className="text-gray-400 mb-4">Fecha de devolución: {proceso.fecha_devolucion}</p>
                   <p className="text-gray-400 mb-4">Comentario: {proceso.comentario}</p>
                   <p className="text-gray-400 mb-4">Estado: {proceso.estado}</p>
                   <div className="flex justify-between">
