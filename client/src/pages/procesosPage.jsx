@@ -58,7 +58,8 @@ function ProcesosPage() {
         proceso.equipo,
         proceso.usuario,
         moment.utc(proceso.fecha_prestamo).format('YYYY-MM-DD'),
-        moment.utc(proceso.fecha_devolucion).format('YYYY-MM-DD'),
+        // moment.utc(proceso.fecha_devolucion).format('YYYY-MM-DD'),
+        proceso.fecha_devolucion,
         proceso.comentario,
         proceso.estado
       ]);
